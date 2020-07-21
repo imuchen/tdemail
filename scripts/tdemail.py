@@ -1,13 +1,12 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
 import getopt
+import locale
 import os
 import smtplib
 import sys
 import time
 import traceback
-import locale
 from email.header import Header
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -39,20 +38,6 @@ com
 """
 
 
-def txt2csv(path):
-    """将txt文件转为csv，解决非标准csv文件在excel中打开出现乱码的问题
-
-    :param path: txt文件路径
-    :return:
-    """
-    iconv_cmd = 'iconv -f utf-8 -t gb2312 ' + path + ' > cp_' + path
-    os.system(iconv_cmd)
-    rm_cmd = 'rm -f ' + path
-    os.system(rm_cmd)
-    mv_cmd = 'mv ' + 'cp_' + path + ' ' + path
-    os.system(mv_cmd)
-
-
 def add_attachment(path, message):
     """添加附件
 
@@ -74,9 +59,6 @@ def add_attachment(path, message):
             file_name = att[att.rfind('/') + 1:]
         else:
             file_name = att
-        # 将非标准csv文件转为标准csv
-        if file_name.endswith('.csv'):
-            txt2csv(file_name)
         # Header(file_name, 'UTF-8').encode() 解决附件中中文乱码问题
         attach["Content-Disposition"] = 'attachment; filename=' + Header(file_name, 'UTF-8').encode()
         message.attach(attach)
