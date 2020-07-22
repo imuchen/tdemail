@@ -90,7 +90,8 @@ def send_email(receiver, acc, subject, content, attachment):
     message = MIMEMultipart()
     message['From'] = Header(u'糖豆数据团队', 'utf-8')
     message['To'] = receiver
-    message['cc'] = acc
+    if acc and '-1' != acc.rstrip():
+        message['cc'] = acc
     message['Subject'] = Header(subject, 'utf-8')
 
     # 邮件正文内容，内容后加上了日期时间和邮件简单说明，如不需要可以删掉
@@ -99,14 +100,14 @@ def send_email(receiver, acc, subject, content, attachment):
     message.attach(MIMEText(text, 'plain', 'utf-8'))
 
     # 添加附件
-    if attachment:
+    if attachment and '-1' != attachment.rstrip():
         add_attachment(attachment, message)
 
     # 多个收件人以逗号分隔
     all_receivers = []
     if receiver:
         all_receivers = receiver.split(',')
-    if acc:
+    if acc and '-1' != acc.rstrip():
         all_receivers += acc.split(',')
 
     try:
