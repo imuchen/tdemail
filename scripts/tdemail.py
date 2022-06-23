@@ -48,7 +48,7 @@ def add_attachment(path, message):
     att_files = []
     if os.path.isdir(path):
         for fn in os.listdir(path):
-            att_files.append(fn)
+            att_files.append(path+'/'+fn)
     elif os.path.isfile(path):
         att_files.append(path)
 
@@ -77,10 +77,10 @@ def send_email(receiver, acc, subject, content, attachment):
     # 发送邮件服务器
     smtpserver = 'smtp.exmail.qq.com'
     # 发送邮箱用户名和密码
-    user = 'xxx@tangdou.com'
-    password = 'xxx'
+    user = 'bigdata@tangdou.com'
+    password = 'Xia0tang123'
     # 发送邮箱
-    sender = 'xxx@tangdou.com'
+    sender = 'bigdata@tangdou.com'
     # 收件邮箱
     receiver = receiver
     # 抄送
