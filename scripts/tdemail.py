@@ -77,10 +77,10 @@ def send_email(receiver, acc, subject, content, attachment):
     # 发送邮件服务器
     smtpserver = 'smtp.exmail.qq.com'
     # 发送邮箱用户名和密码
-    user = 'bigdata@tangdou.com'
-    password = 'Xia0tang123'
+    user = 'xxx@tangdou.com'
+    password = 'xxx'
     # 发送邮箱
-    sender = 'bigdata@tangdou.com'
+    sender = 'xxx@tangdou.com'
     # 收件邮箱
     receiver = receiver
     # 抄送
